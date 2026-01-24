@@ -45,7 +45,15 @@ export function buildWhatsAppUrl(values: AppointmentFormValues) {
   return `https://wa.me/${clinic.whatsapp}?text=${text}`;
 }
 
-export function AppointmentDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) {
+export function AppointmentDialog({
+  open,
+  onOpenChange,
+  initialService,
+}: {
+  open: boolean;
+  onOpenChange: (v: boolean) => void;
+  initialService?: string;
+}) {
   const form = useForm<AppointmentFormValues>({
     resolver: zodResolver(appointmentSchema),
     defaultValues: {
@@ -58,6 +66,12 @@ export function AppointmentDialog({ open, onOpenChange }: { open: boolean; onOpe
       message: "",
     },
   });
+
+  React.useEffect(() => {
+    if (!open) return;
+    if (!initialService) return;
+    form.setValue("service", initialService, { shouldValidate: true });
+  }, [open, initialService, form]);
 
   const onSubmit = (values: AppointmentFormValues) => {
     // No backend in Phase 1: show confirmation and offer WhatsApp.

@@ -155,4 +155,15 @@ All colors MUST be HSL.
   .text-balance {
     text-wrap: balance;
   }
+
+  .story-link {
+    @apply relative inline-block;
+  }
+  .story-link::after {
+    content: "";
+    @apply absolute left-0 -bottom-0.5 h-0.5 w-full origin-bottom-right scale-x-0 bg-primary transition-transform duration-300;
+  }
+  .story-link:hover::after {
+    @apply origin-bottom-left scale-x-100;
+  }
 }
