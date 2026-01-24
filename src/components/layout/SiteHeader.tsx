@@ -86,7 +86,7 @@ export function SiteHeader() {
                 <span className="font-display text-lg">B</span>
               </span>
               <div className="leading-tight">
-                <div className="font-display text-sm tracking-tight">{clinic.name}</div>
+                <div className="font-display text-sm font-bold tracking-tight">BHASIN DENTAL CLINIC</div>
                 <div className="text-xs text-muted-foreground">Pitampura, Delhi</div>
               </div>
             </NavLink>
