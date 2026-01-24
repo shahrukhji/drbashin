@@ -185,7 +185,7 @@ All colors MUST be HSL.
   }
 
   .logo-badge-premium {
-    background: var(--gradient-sheen);
+    background: hsl(var(--accent));
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-soft);
@@ -201,11 +201,13 @@ All colors MUST be HSL.
       hsl(var(--background) / 0.55),
       transparent
     );
-    animation: logo-shimmer 2.8s ease-in-out infinite;
+    opacity: 0;
+    animation: none;
     pointer-events: none;
   }
 
   .logo-badge-premium:hover::after {
-    animation-duration: 1.9s;
+    opacity: 1;
+    animation: logo-shimmer 1.35s ease-in-out 1;
   }
 }
