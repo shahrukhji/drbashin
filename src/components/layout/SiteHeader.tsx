@@ -82,12 +82,14 @@ export function SiteHeader() {
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-3">
             <NavLink to="/" className="group inline-flex items-center gap-2" aria-label={clinic.name}>
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-foreground soft-shadow">
-                <span className="font-display text-lg">B</span>
+              <span className="logo-badge-premium inline-flex h-10 w-10 items-center justify-center rounded-xl text-primary-foreground">
+                <span className="font-display text-lg tracking-tight">B</span>
               </span>
-              <div className="leading-tight">
-                <div className="font-display text-sm font-bold tracking-tight">BHASIN DENTAL CLINIC</div>
-                <div className="text-xs text-muted-foreground">Pitampura, Delhi</div>
+              <div className="leading-none">
+                <div className="font-display text-[13px] font-bold tracking-[-0.02em] sm:text-sm">
+                  BHASIN DENTAL CLINIC
+                </div>
+                <div className="mt-0.5 text-xs leading-tight text-muted-foreground">Pitampura, Delhi</div>
               </div>
             </NavLink>
           </div>

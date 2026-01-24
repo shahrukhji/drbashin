@@ -166,4 +166,46 @@ All colors MUST be HSL.
   .story-link:hover::after {
     @apply origin-bottom-left scale-x-100;
   }
+
+  @keyframes logo-shimmer {
+    0% {
+      transform: translateX(-120%) rotate(12deg);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.85;
+    }
+    60% {
+      opacity: 0.85;
+    }
+    100% {
+      transform: translateX(120%) rotate(12deg);
+      opacity: 0;
+    }
+  }
+
+  .logo-badge-premium {
+    background: var(--gradient-sheen);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .logo-badge-premium::after {
+    content: "";
+    position: absolute;
+    inset: -35%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--background) / 0.55),
+      transparent
+    );
+    animation: logo-shimmer 2.8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .logo-badge-premium:hover::after {
+    animation-duration: 1.9s;
+  }
 }
