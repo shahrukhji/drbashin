@@ -60,13 +60,25 @@ export function SiteFooter() {
       <div className="border-t">
         <div className="container flex flex-col gap-2 py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <div>© {new Date().getFullYear()} {clinic.name}. All rights reserved.</div>
-          <div className="flex gap-4">
-            <a className="hover:text-foreground" href="#" aria-label="Privacy policy">
-              Privacy
-            </a>
-            <a className="hover:text-foreground" href="#" aria-label="Terms">
-              Terms
-            </a>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
+            <div>
+              Powered by{" "}
+              <a
+                className="story-link"
+                href="#"
+                aria-label="Powered by AMK Digital solution"
+              >
+                AMK Digital solution
+              </a>
+            </div>
+            <div className="flex gap-4">
+              <a className="hover:text-foreground" href="#" aria-label="Privacy policy">
+                Privacy
+              </a>
+              <a className="hover:text-foreground" href="#" aria-label="Terms">
+                Terms
+              </a>
+            </div>
           </div>
         </div>
       </div>
