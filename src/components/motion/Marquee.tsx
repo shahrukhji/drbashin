@@ -32,8 +32,8 @@ export function Marquee({
       <div
         className={cn(
           "flex w-max items-stretch gap-3",
-          "motion-reduce:animate-none",
-          "animate-marquee",
+          "will-change-transform",
+          "motion-safe:animate-marquee motion-reduce:animate-none",
           durationClassName,
           pauseOnHover && "group-hover:[animation-play-state:paused]",
         )}

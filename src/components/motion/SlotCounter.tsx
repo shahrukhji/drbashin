@@ -17,6 +17,21 @@ function usePrefersReducedMotion() {
   return reduced;
 }
 
+function useIsSmallScreen() {
+  const [isSmall, setIsSmall] = React.useState(false);
+
+  React.useEffect(() => {
+    const mq = window.matchMedia?.("(max-width: 640px)");
+    if (!mq) return;
+    const onChange = () => setIsSmall(mq.matches);
+    onChange();
+    mq.addEventListener?.("change", onChange);
+    return () => mq.removeEventListener?.("change", onChange);
+  }, []);
+
+  return isSmall;
+}
+
 function formatCompact(n: number) {
   return n.toLocaleString("en-IN");
 }
@@ -26,12 +41,14 @@ function SlotDigit({
   runKey,
   durationMs,
   delayMs,
+  spins,
   className,
 }: {
   digit: number;
   runKey: number;
   durationMs: number;
   delayMs: number;
+  spins: number;
   className?: string;
 }) {
   const measureRef = React.useRef<HTMLSpanElement | null>(null);
@@ -48,22 +65,19 @@ function SlotDigit({
     if (!digitH) return;
     // Reset to top, then spin to target.
     setTranslateY(0);
-    const spins = 2; // fixed spins to feel "slot-like" without being too long
     const target = (spins * 10 + digit) * digitH;
     const id = window.setTimeout(() => {
       // next tick so transition applies
       requestAnimationFrame(() => setTranslateY(-target));
     }, delayMs);
     return () => window.clearTimeout(id);
-  }, [digit, digitH, delayMs, runKey]);
+  }, [digit, digitH, delayMs, runKey, spins]);
 
   const stack: number[] = React.useMemo(() => {
-    // Build enough digits to support the fixed spin distance above.
-    // (spins*10 + digit) positions, plus some extra.
-    const spins = 2;
+    // Build enough digits to support the chosen spin distance.
     const count = spins * 10 + 10;
     return Array.from({ length: count }, (_, i) => i % 10);
-  }, []);
+  }, [spins]);
 
   return (
     <span className={cn("inline-flex h-[1.05em] overflow-hidden align-baseline", className)}>
@@ -108,9 +122,13 @@ export function SlotCounter({
   className?: string;
 }) {
   const reduced = usePrefersReducedMotion();
+  const isSmall = useIsSmallScreen();
   const ref = React.useRef<HTMLSpanElement | null>(null);
   const [inView, setInView] = React.useState(false);
   const [runKey, setRunKey] = React.useState(0);
+
+  // Lighter animation on phones to reduce jank.
+  const spins = isSmall ? 1 : 2;
 
   React.useEffect(() => {
     if (reduced) {
@@ -174,6 +192,7 @@ export function SlotCounter({
                   runKey={runKey}
                   durationMs={durationMs}
                   delayMs={i * 55}
+                  spins={spins}
                 />
               );
             }

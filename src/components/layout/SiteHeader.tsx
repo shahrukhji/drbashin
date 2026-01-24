@@ -48,7 +48,12 @@ export function SiteHeader() {
         <div className="border-b bg-accent/60">
           <div className="container overflow-hidden py-2">
             <div className="relative">
-              <div className="flex w-[200%] animate-marquee items-center gap-6 text-xs text-muted-foreground">
+              <div className={cn(
+                "flex w-[200%] items-center gap-6 text-xs text-muted-foreground",
+                "motion-safe:animate-marquee motion-reduce:animate-none",
+                "[animation-duration:28s] sm:[animation-duration:18s]",
+              )}>
+              
                 <div className="flex w-1/2 items-center justify-between gap-6 whitespace-nowrap">
                   <span className="font-medium text-foreground/80">Call Dr. Damini Bhasin:</span>
                   <a className="story-link" href={`tel:${clinic.phones[0].replace(/\s/g, "")}`}>
