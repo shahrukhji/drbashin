@@ -13,6 +13,8 @@ const nav = [
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
   { to: "/technology", label: "Technology" },
+  { to: "/gallery", label: "Gallery" },
+  { to: "/contact", label: "Contact" },
 ] as const;
 
 function NavItems({ onNavigate }: { onNavigate?: () => void }) {
