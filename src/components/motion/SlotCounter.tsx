@@ -37,9 +37,37 @@ export function SlotCounter({
   className?: string;
 }) {
   const reduced = usePrefersReducedMotion();
+  const ref = React.useRef<HTMLSpanElement | null>(null);
+  const [inView, setInView] = React.useState(false);
   const [value, setValue] = React.useState(reduced ? end : start);
 
   React.useEffect(() => {
+    if (reduced) {
+      setInView(true);
+      return;
+    }
+    const el = ref.current;
+    if (!el) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            setInView(true);
+            io.disconnect();
+            break;
+          }
+        }
+      },
+      { threshold: 0.35 },
+    );
+
+    io.observe(el);
+    return () => io.disconnect();
+  }, [reduced]);
+
+  React.useEffect(() => {
+    if (!inView) return;
     if (reduced) {
       setValue(end);
       return;
@@ -61,10 +89,14 @@ export function SlotCounter({
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [durationMs, end, reduced, start, step]);
+  }, [durationMs, end, inView, reduced, start, step]);
 
   return (
-    <span className={cn("tabular-nums tracking-tight", className)} aria-label={`${formatCompact(end)}${suffix}`}>
+    <span
+      ref={ref}
+      className={cn("tabular-nums tracking-tight", className)}
+      aria-label={`${formatCompact(end)}${suffix}`}
+    >
       {formatCompact(value)}
       {suffix}
     </span>
