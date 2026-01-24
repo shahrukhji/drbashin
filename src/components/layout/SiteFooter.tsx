@@ -66,9 +66,9 @@ export function SiteFooter() {
               <a
                 className="story-link"
                 href="#"
-                aria-label="Powered by AMK Digital solution"
+                aria-label="Powered by AMK Digital Solution"
               >
-                AMK Digital solution
+                AMK Digital Solution
               </a>
             </div>
             <div className="flex gap-4">

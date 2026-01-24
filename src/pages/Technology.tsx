@@ -7,6 +7,9 @@ import { useDocumentMeta } from "@/hooks/use-document-meta";
 import { clinic } from "@/content/clinic";
 
 import tech from "@/assets/clinic-technology.jpg";
+import facility from "@/assets/clinic-facility.jpg";
+
+import { GalleryLightbox } from "@/components/marketing/GalleryLightbox";
 
 const techItems = [
   { title: "Precision diagnostics", desc: "Modern imaging and planning for predictable outcomes." },
@@ -89,6 +92,26 @@ export default function Technology() {
             </p>
           </div>
         </div>
+      </section>
+
+      <section className="container pb-16">
+        <GalleryLightbox
+          eyebrow="Gallery"
+          title="See the space, feel the comfort"
+          description="A clean clinic and modern equipment—designed to make treatment feel calmer."
+          items={[
+            {
+              src: tech,
+              alt: "Advanced dental technology equipment used at the clinic",
+              caption: "Modern diagnostics",
+            },
+            {
+              src: facility,
+              alt: "Clinic reception and waiting area",
+              caption: "Clean, calm environment",
+            },
+          ]}
+        />
       </section>
     </PageLayout>
   );
