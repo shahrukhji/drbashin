@@ -67,21 +67,50 @@ export function GalleryLightbox({
         {description ? <p className="mt-3 text-sm text-muted-foreground">{description}</p> : null}
       </div>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        {items.map((item, idx) => (
+      <div className="mt-8 grid auto-rows-[120px] grid-cols-12 gap-4">
+        {items.map((item, idx) => {
+          const isPlaceholder = item.src === "/placeholder.svg";
+          const span =
+            idx % 6 === 0
+              ? "col-span-12 row-span-3"
+              : idx % 6 === 1
+                ? "col-span-12 row-span-2 sm:col-span-6"
+                : idx % 6 === 2
+                  ? "col-span-6 row-span-2 sm:col-span-6"
+                  : idx % 6 === 3
+                    ? "col-span-6 row-span-2 sm:col-span-4"
+                    : idx % 6 === 4
+                      ? "col-span-6 row-span-2 sm:col-span-4"
+                      : "col-span-12 row-span-2 sm:col-span-4";
+
+          return (
           <button
             key={item.caption}
             type="button"
             onClick={() => setOpenIndex(idx)}
-            className="group relative overflow-hidden rounded-2xl border bg-background text-left soft-shadow"
+            className={cn(
+              "group relative overflow-hidden rounded-2xl border bg-background text-left soft-shadow",
+              "animate-fade-in",
+              span,
+            )}
+            style={{ animationDelay: `${Math.min(idx * 60, 360)}ms` }}
             aria-label={`Open image: ${item.caption}`}
           >
             <img
               src={item.src}
               alt={item.alt}
               loading="lazy"
-              className="h-56 w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+              className={cn(
+                "h-full w-full transition-transform duration-300 group-hover:scale-[1.03]",
+                isPlaceholder ? "bg-accent/40 object-contain p-10" : "object-cover",
+              )}
             />
+
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            />
+
             <div className="absolute inset-x-0 bottom-0 bg-background/80 backdrop-blur-sm">
               <div className="flex items-center justify-between gap-3 px-4 py-3">
                 <div className="text-sm font-medium">{item.caption}</div>
@@ -90,8 +119,15 @@ export function GalleryLightbox({
                 </div>
               </div>
             </div>
+
+            {isPlaceholder ? (
+              <div className="absolute left-3 top-3 rounded-full border bg-background/80 px-3 py-1 text-xs text-muted-foreground backdrop-blur-sm">
+                Upload photo
+              </div>
+            ) : null}
           </button>
-        ))}
+          );
+        })}
       </div>
 
       <Dialog open={hasOpen} onOpenChange={(o) => setOpenIndex(o ? openIndex : null)}>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image as ImageIcon } from "lucide-react";
+import { Image as ImageIcon, Sparkles } from "lucide-react";
 
 import { PageLayout } from "@/components/layout/PageLayout";
 import { WhatsAppFab } from "@/components/marketing/WhatsAppFab";
@@ -107,8 +107,13 @@ export default function Gallery() {
     <PageLayout>
       <WhatsAppFab />
 
-      <header className="bg-hero">
-        <div className="container py-14 sm:py-18">
+      <header className="bg-hero relative overflow-hidden">
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <div className="absolute -left-12 top-10 h-56 w-56 rounded-full bg-accent/50 blur-2xl" />
+          <div className="absolute -right-16 top-24 h-64 w-64 rounded-full bg-primary/15 blur-3xl" />
+          <div className="absolute left-1/3 top-2 h-40 w-40 rounded-full bg-accent/30 blur-2xl" />
+        </div>
+        <div className="container relative py-14 sm:py-18">
           <p className="text-sm font-medium text-muted-foreground">Gallery</p>
           <h1 className="mt-2 text-balance font-display text-4xl tracking-tight sm:text-5xl">
             Take a quick look inside
@@ -116,6 +121,17 @@ export default function Gallery() {
           <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
             Browse facility, technology and team photos—tap any image to open it full-screen.
           </p>
+
+          <div className="mt-7 flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-2 rounded-full border bg-background/70 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
+              <Sparkles className="h-3.5 w-3.5 text-primary" />
+              Premium, comfort-first clinic
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-full border bg-background/70 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
+              <ImageIcon className="h-3.5 w-3.5" />
+              Tap to enlarge
+            </span>
+          </div>
         </div>
       </header>
 
@@ -127,7 +143,7 @@ export default function Gallery() {
                 <ImageIcon className="h-4 w-4" />
                 Categories
               </div>
-              <TabsList className="w-full sm:w-auto">
+              <TabsList className="w-full sm:w-auto bg-accent">
                 <TabsTrigger value="facility">Facility</TabsTrigger>
                 <TabsTrigger value="technology">Technology</TabsTrigger>
                 <TabsTrigger value="team">Team</TabsTrigger>
@@ -141,6 +157,7 @@ export default function Gallery() {
                   title={`Photos: ${categories[key].label}`}
                   description="You can replace placeholders with real clinic photos anytime."
                   items={categories[key].items}
+                  className="animate-fade-in"
                 />
               </TabsContent>
             ))}
