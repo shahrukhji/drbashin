@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ArrowRight, Sparkles, Star } from "lucide-react";
+import { ArrowRight, MapPin, Phone, ShieldCheck, Sparkles, Timer } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 
 import heroImg from "@/assets/bhasin-hero.jpg";
@@ -8,6 +8,8 @@ import portrait from "@/assets/dr-damini-portrait.jpg";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHeading } from "@/components/marketing/SectionHeading";
 import { WhatsAppFab } from "@/components/marketing/WhatsAppFab";
+import { TestimonialsCarousel } from "@/components/marketing/TestimonialsCarousel";
+import { GoogleReviewsPlaceholder } from "@/components/marketing/GoogleReviewsPlaceholder";
 import { AppointmentDialog } from "@/components/appointments/AppointmentDialog";
 import { Button } from "@/components/ui/button";
 import { useDocumentMeta } from "@/hooks/use-document-meta";
@@ -23,14 +25,6 @@ const TrustBadges = () => (
           <span className="font-medium">{t}</span>
         </div>
       </div>
-    ))}
-  </div>
-);
-
-const Stars = ({ count }: { count: number }) => (
-  <div className="flex items-center gap-1">
-    {Array.from({ length: count }).map((_, i) => (
-      <Star key={i} className="h-4 w-4 fill-brand-accent text-brand-accent" />
     ))}
   </div>
 );
@@ -115,6 +109,50 @@ export default function Index() {
 
       <section className="container py-14">
         <SectionHeading
+          eyebrow="Experience"
+          title="What to expect on your first visit"
+          description="A calm, guided process designed to reduce anxiety and deliver clarity—before any treatment begins."
+        />
+
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <div className="surface rounded-3xl p-6">
+            <div className="flex items-center gap-3">
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent">
+                <ShieldCheck className="h-5 w-5" />
+              </div>
+              <div className="font-medium">Comfort-first assessment</div>
+            </div>
+            <p className="mt-3 text-sm text-muted-foreground">
+              We start with a gentle examination and clear explanation—no rushing, no pressure.
+            </p>
+          </div>
+          <div className="surface rounded-3xl p-6">
+            <div className="flex items-center gap-3">
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent">
+                <Sparkles className="h-5 w-5" />
+              </div>
+              <div className="font-medium">Personalized treatment plan</div>
+            </div>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Options, timelines, and costs are discussed upfront—so you can decide confidently.
+            </p>
+          </div>
+          <div className="surface rounded-3xl p-6">
+            <div className="flex items-center gap-3">
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent">
+                <Timer className="h-5 w-5" />
+              </div>
+              <div className="font-medium">Efficient appointments</div>
+            </div>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Modern diagnostics help us reduce chair-time while keeping results precise.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="container py-14">
+        <SectionHeading
           eyebrow="Services"
           title="Care for every smile"
           description="Explore our core service categories—designed around comfort, longevity, and confidence."
@@ -166,14 +204,48 @@ export default function Index() {
           title="Loved by patients"
           description="A small snapshot of the comfort-first experience we aim to deliver." 
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
-            <figure key={t.name} className="rounded-3xl border bg-background p-6 soft-shadow">
-              <Stars count={t.rating} />
-              <blockquote className="mt-4 text-sm text-muted-foreground">“{t.quote}”</blockquote>
-              <figcaption className="mt-4 text-sm font-medium">{t.name}</figcaption>
-            </figure>
-          ))}
+        <div className="mt-10">
+          <TestimonialsCarousel items={testimonials} />
+        </div>
+
+        <div className="mt-10">
+          <GoogleReviewsPlaceholder />
+        </div>
+      </section>
+
+      <section className="container py-14">
+        <div className="grid gap-6 rounded-3xl border bg-background p-8 soft-shadow lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <div className="font-display text-2xl">Visit us in Pitampura</div>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Conveniently located near Ram Mandir. Call or message on WhatsApp for quick guidance and directions.
+            </p>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+              <Button variant="outline" size="lg" asChild>
+                <a href={`tel:${clinic.phones[0].replace(/\s/g, "")}`}>
+                  <Phone />
+                  Call {clinic.phones[0]}
+                </a>
+              </Button>
+              <Button variant="soft" size="lg" asChild>
+                <a href={`https://wa.me/${clinic.whatsapp}`} target="_blank" rel="noopener noreferrer">
+                  WhatsApp
+                </a>
+              </Button>
+            </div>
+          </div>
+          <div className="surface rounded-2xl p-5">
+            <div className="flex items-start gap-2 text-sm text-muted-foreground">
+              <MapPin className="mt-0.5 h-4 w-4" />
+              <div>
+                <div className="text-sm font-medium text-foreground">Address</div>
+                <div className="mt-1">{clinic.addressLine}</div>
+              </div>
+            </div>
+            <div className="mt-4 text-xs text-muted-foreground">
+              Add a Google Maps embed on the Contact page in Phase 2.
+            </div>
+          </div>
         </div>
       </section>
 
