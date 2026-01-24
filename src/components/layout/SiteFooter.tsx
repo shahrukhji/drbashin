@@ -41,6 +41,12 @@ export function SiteFooter() {
             <NavLink to="/technology" className="text-muted-foreground hover:text-foreground">
               Technology & Comfort
             </NavLink>
+            <NavLink to="/gallery" className="text-muted-foreground hover:text-foreground">
+              Gallery
+            </NavLink>
+            <NavLink to="/contact" className="text-muted-foreground hover:text-foreground">
+              Contact
+            </NavLink>
           </div>
         </div>
 
