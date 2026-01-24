@@ -2,7 +2,7 @@ import { ShieldCheck, Sparkles, Stethoscope } from "lucide-react";
 
 import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHeading } from "@/components/marketing/SectionHeading";
-import { WhatsAppFab } from "@/components/marketing/WhatsAppFab";
+import { ContactFabs } from "@/components/marketing/ContactFabs";
 import { useDocumentMeta } from "@/hooks/use-document-meta";
 import { clinic } from "@/content/clinic";
 
@@ -26,7 +26,7 @@ export default function Technology() {
 
   return (
     <PageLayout>
-      <WhatsAppFab />
+      <ContactFabs />
 
       <header className="bg-hero">
         <div className="container py-14 sm:py-18">
