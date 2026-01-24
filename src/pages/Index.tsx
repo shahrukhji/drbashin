@@ -79,6 +79,37 @@ export default function Index() {
         </div>
       </section>
 
+      <section className="container py-10">
+        <div className="surface relative overflow-hidden rounded-3xl p-6 sm:p-8">
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div className="absolute -left-14 -top-16 h-56 w-56 rounded-full bg-primary/15 blur-3xl" />
+            <div className="absolute -right-20 top-10 h-72 w-72 rounded-full bg-accent/60 blur-3xl" />
+          </div>
+
+          <div className="relative">
+            <div className="text-sm font-medium text-muted-foreground">Successfully Completed</div>
+            <h2 className="mt-2 text-balance font-display text-2xl tracking-tight sm:text-3xl">
+              Proven outcomes, premium care
+            </h2>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              <div className="rounded-2xl border bg-background/70 p-5 soft-shadow">
+                <div className="font-display text-3xl">10000+</div>
+                <div className="mt-1 text-sm text-muted-foreground">Dental Implants</div>
+              </div>
+              <div className="rounded-2xl border bg-background/70 p-5 soft-shadow">
+                <div className="font-display text-3xl">5000+</div>
+                <div className="mt-1 text-sm text-muted-foreground">Invisible Aligners</div>
+              </div>
+              <div className="rounded-2xl border bg-background/70 p-5 soft-shadow">
+                <div className="font-display text-3xl">7000+</div>
+                <div className="mt-1 text-sm text-muted-foreground">Digital Smile Designs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="container py-14">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="overflow-hidden rounded-3xl border bg-background soft-shadow">

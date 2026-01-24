@@ -44,6 +44,35 @@ export function SiteHeader() {
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 border-b bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="border-b bg-accent/60">
+          <div className="container overflow-hidden py-2">
+            <div className="relative">
+              <div className="flex w-[200%] animate-marquee items-center gap-6 text-xs text-muted-foreground">
+                <div className="flex w-1/2 items-center justify-between gap-6 whitespace-nowrap">
+                  <span className="font-medium text-foreground/80">Call us:</span>
+                  <a className="story-link" href={`tel:${clinic.phones[0].replace(/\s/g, "")}`}>
+                    {clinic.phones[0]}
+                  </a>
+                  <span className="text-muted-foreground">•</span>
+                  <a className="story-link" href={`tel:${clinic.phones[1].replace(/\s/g, "")}`}>
+                    {clinic.phones[1]}
+                  </a>
+                  <span className="text-muted-foreground">•</span>
+                  <span>WhatsApp: {clinic.whatsapp.replace(/^\+?/, "+")}</span>
+                </div>
+                <div className="flex w-1/2 items-center justify-between gap-6 whitespace-nowrap" aria-hidden>
+                  <span className="font-medium text-foreground/80">Call us:</span>
+                  <span>{clinic.phones[0]}</span>
+                  <span className="text-muted-foreground">•</span>
+                  <span>{clinic.phones[1]}</span>
+                  <span className="text-muted-foreground">•</span>
+                  <span>WhatsApp: {clinic.whatsapp.replace(/^\+?/, "+")}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-3">
             <NavLink to="/" className="group inline-flex items-center gap-2" aria-label={clinic.name}>
