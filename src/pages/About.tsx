@@ -8,6 +8,9 @@ import { clinic } from "@/content/clinic";
 
 import portrait from "@/assets/dr-damini-portrait.jpg";
 import facility from "@/assets/clinic-facility.jpg";
+import technology from "@/assets/clinic-technology.jpg";
+
+import { GalleryLightbox } from "@/components/marketing/GalleryLightbox";
 
 const timeline = [
   { year: "2017", title: "Clinic established", desc: "Founded in Pitampura with a focus on premium, patient-first dentistry." },
@@ -133,6 +136,26 @@ export default function About() {
             </ul>
           </div>
         </div>
+      </section>
+
+      <section className="container pb-16">
+        <GalleryLightbox
+          eyebrow="Gallery"
+          title="A quick look inside the clinic"
+          description="Tap any image to open it full-screen."
+          items={[
+            {
+              src: facility,
+              alt: "Clinic reception and patient waiting area",
+              caption: "Reception & waiting area",
+            },
+            {
+              src: technology,
+              alt: "Modern dental technology equipment",
+              caption: "Technology & equipment",
+            },
+          ]}
+        />
       </section>
     </PageLayout>
   );
