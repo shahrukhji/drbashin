@@ -1,6 +1,7 @@
 import { ExternalLink, Star } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Marquee } from "@/components/motion/Marquee";
 import { cn } from "@/lib/utils";
 
 function Stars({ count = 5 }: { count?: number }) {
@@ -26,15 +27,51 @@ export function GoogleReviewsPlaceholder({ className }: { className?: string }) 
         <Stars />
       </div>
 
-      <div className="mt-5 grid gap-3 sm:grid-cols-3">
-        {[1, 2, 3].map((i) => (
-          <div key={i} className="surface rounded-2xl p-4">
-            <p className="text-sm text-muted-foreground">
-              “Sample review card. Once connected, real reviews will appear here with author and date.”
-            </p>
-            <div className="mt-3 text-xs text-muted-foreground">— Google user</div>
-          </div>
-        ))}
+      <div className="mt-5">
+        <Marquee className="rounded-2xl" pauseOnHover durationClassName="[animation-duration:20s]">
+          {[
+            {
+              quote:
+                "Sample review card. Once connected, real reviews will appear here with author, rating, and date.",
+              author: "Google user",
+            },
+            {
+              quote:
+                "Patients love fast scheduling, clear explanations, and comfort-first care—this is a placeholder example.",
+              author: "Google user",
+            },
+            {
+              quote:
+                "Third‑party reviews build trust. Replace this placeholder with your live Google Business Profile feed.",
+              author: "Google user",
+            },
+            {
+              quote:
+                "A smooth right‑to‑left slider keeps the section lively while staying readable—placeholder text.",
+              author: "Google user",
+            },
+            {
+              quote:
+                "Tip: Use real names + timestamps when integrated. For now, these cards demonstrate layout only.",
+              author: "Google user",
+            },
+          ].map((r, i) => (
+            <div
+              key={i}
+              className={cn(
+                "surface w-[280px] shrink-0 rounded-2xl p-4",
+                "sm:w-[320px]",
+              )}
+            >
+              <div className="flex items-center justify-between gap-3">
+                <Stars />
+                <div className="text-xs text-muted-foreground">Google</div>
+              </div>
+              <p className="mt-3 text-sm text-muted-foreground">“{r.quote}”</p>
+              <div className="mt-3 text-xs text-muted-foreground">— {r.author}</div>
+            </div>
+          ))}
+        </Marquee>
       </div>
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
