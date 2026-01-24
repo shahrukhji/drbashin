@@ -40,6 +40,7 @@ export function SlotCounter({
   const ref = React.useRef<HTMLSpanElement | null>(null);
   const [inView, setInView] = React.useState(false);
   const [value, setValue] = React.useState(reduced ? end : start);
+  const [runKey, setRunKey] = React.useState(0);
 
   React.useEffect(() => {
     if (reduced) {
@@ -78,6 +79,8 @@ export function SlotCounter({
     const range = end - start;
     const steps = Math.max(1, Math.round(range / step));
 
+    setValue(start);
+
     const tick = (ts: number) => {
       if (!startTs) startTs = ts;
       const t = Math.min(1, (ts - startTs) / durationMs);
@@ -89,13 +92,20 @@ export function SlotCounter({
 
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [durationMs, end, inView, reduced, start, step]);
+  }, [durationMs, end, inView, reduced, runKey, start, step]);
 
   return (
     <span
       ref={ref}
       className={cn("tabular-nums tracking-tight", className)}
       aria-label={`${formatCompact(end)}${suffix}`}
+      tabIndex={0}
+      onMouseEnter={() => {
+        if (!reduced) setRunKey((k) => k + 1);
+      }}
+      onFocus={() => {
+        if (!reduced) setRunKey((k) => k + 1);
+      }}
     >
       {formatCompact(value)}
       {suffix}
