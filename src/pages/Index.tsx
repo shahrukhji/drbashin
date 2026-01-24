@@ -8,14 +8,14 @@ import portrait from "@/assets/dr-damini-portrait.jpg";
 import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHeading } from "@/components/marketing/SectionHeading";
 import { ContactFabs } from "@/components/marketing/ContactFabs";
-import { TestimonialsCarousel } from "@/components/marketing/TestimonialsCarousel";
 import { GoogleReviewsPlaceholder } from "@/components/marketing/GoogleReviewsPlaceholder";
 import { AppointmentDialog } from "@/components/appointments/AppointmentDialog";
 import { Button } from "@/components/ui/button";
 import { useDocumentMeta } from "@/hooks/use-document-meta";
-import { clinic, serviceCategories, testimonials, whyChooseUs } from "@/content/clinic";
+import { clinic, serviceCategories, whyChooseUs } from "@/content/clinic";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/motion/Reveal";
+import { SlotCounter } from "@/components/motion/SlotCounter";
 
 const TrustBadges = () => (
   <div className="mt-10 grid gap-3 sm:grid-cols-3">
@@ -101,10 +101,15 @@ export default function Index() {
               <div className="mt-6 grid gap-4 md:grid-cols-3">
                 {["10000+ Dental Implants", "5000+ Invisible Aligners", "7000+ Digital Smile designs"].map((label, i) => {
                   const [count, ...rest] = label.split(" ");
+                  const end = Number(count.replace(/\D/g, ""));
+                  const start = Math.max(0, end - 1000);
+                  const step = end >= 10000 ? 100 : 50;
                   return (
                     <Reveal key={label} delay={120 + i * 90}>
                       <div className="rounded-2xl border bg-background/70 p-5 soft-shadow">
-                        <div className="font-display text-3xl">{count}</div>
+                        <div className="font-display text-3xl">
+                          <SlotCounter start={start} end={end} step={step} durationMs={1400} suffix="+" />
+                        </div>
                         <div className="mt-1 text-sm text-muted-foreground">{rest.join(" ")}</div>
                       </div>
                     </Reveal>
@@ -254,19 +259,9 @@ export default function Index() {
 
       <section className="container py-14">
         <Reveal>
-          <SectionHeading
-            eyebrow="Testimonials"
-            title="Loved by patients"
-            description="A small snapshot of the comfort-first experience we aim to deliver." 
-          />
+          <SectionHeading eyebrow="Reviews" title="Google Business Reviews" />
         </Reveal>
-        <Reveal delay={100}>
-          <div className="mt-10">
-            <TestimonialsCarousel items={testimonials} />
-          </div>
-        </Reveal>
-
-        <Reveal delay={160}>
+        <Reveal delay={120}>
           <div className="mt-10">
             <GoogleReviewsPlaceholder />
           </div>

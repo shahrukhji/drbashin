@@ -49,7 +49,7 @@ export function SiteHeader() {
             <div className="relative">
               <div className="flex w-[200%] animate-marquee items-center gap-6 text-xs text-muted-foreground">
                 <div className="flex w-1/2 items-center justify-between gap-6 whitespace-nowrap">
-                  <span className="font-medium text-foreground/80">Call us:</span>
+                  <span className="font-medium text-foreground/80">Call Dr. Damini Bhasin:</span>
                   <a className="story-link" href={`tel:${clinic.phones[0].replace(/\s/g, "")}`}>
                     {clinic.phones[0]}
                   </a>
@@ -58,15 +58,21 @@ export function SiteHeader() {
                     {clinic.phones[1]}
                   </a>
                   <span className="text-muted-foreground">•</span>
-                  <span>WhatsApp: {clinic.whatsapp.replace(/^\+?/, "+")}</span>
+                  <span className="inline-flex items-center gap-1">
+                    <MessageCircle className="h-3.5 w-3.5" />
+                    <span>{clinic.whatsapp.replace(/^\+?/, "+")}</span>
+                  </span>
                 </div>
                 <div className="flex w-1/2 items-center justify-between gap-6 whitespace-nowrap" aria-hidden>
-                  <span className="font-medium text-foreground/80">Call us:</span>
+                  <span className="font-medium text-foreground/80">Call Dr. Damini Bhasin:</span>
                   <span>{clinic.phones[0]}</span>
                   <span className="text-muted-foreground">•</span>
                   <span>{clinic.phones[1]}</span>
                   <span className="text-muted-foreground">•</span>
-                  <span>WhatsApp: {clinic.whatsapp.replace(/^\+?/, "+")}</span>
+                  <span className="inline-flex items-center gap-1">
+                    <MessageCircle className="h-3.5 w-3.5" />
+                    <span>{clinic.whatsapp.replace(/^\+?/, "+")}</span>
+                  </span>
                 </div>
               </div>
             </div>
