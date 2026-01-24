@@ -7,6 +7,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { clinic } from "@/content/clinic";
 import { AppointmentDialog } from "@/components/appointments/AppointmentDialog";
 import { cn } from "@/lib/utils";
+import logoImg from "@/assets/bhasin-logo.jpeg";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -82,8 +83,14 @@ export function SiteHeader() {
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-3">
             <NavLink to="/" className="group inline-flex items-center gap-2" aria-label={clinic.name}>
-              <span className="logo-badge-premium inline-flex h-10 w-10 items-center justify-center rounded-xl text-primary-foreground">
-                <span className="font-display text-lg tracking-tight">B</span>
+              <span className="logo-badge-premium inline-flex h-10 w-10 items-center justify-center rounded-xl">
+                <img
+                  src={logoImg}
+                  alt="Bhasin Dental Clinic logo"
+                  className="h-full w-full rounded-xl object-cover"
+                  loading="eager"
+                  decoding="async"
+                />
               </span>
               <div className="leading-none">
                 <div className="font-display text-[13px] font-bold tracking-[-0.02em] sm:text-sm">
