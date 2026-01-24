@@ -6,7 +6,7 @@ import { MapPin, Clock, Phone, MessageCircle } from "lucide-react";
 
 import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHeading } from "@/components/marketing/SectionHeading";
-import { WhatsAppFab } from "@/components/marketing/WhatsAppFab";
+import { ContactFabs } from "@/components/marketing/ContactFabs";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -90,7 +90,7 @@ export default function Contact() {
 
   return (
     <PageLayout>
-      <WhatsAppFab />
+      <ContactFabs />
 
       <header className="bg-hero">
         <div className="container py-14 sm:py-18">

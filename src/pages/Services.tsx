@@ -3,7 +3,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHeading } from "@/components/marketing/SectionHeading";
-import { WhatsAppFab } from "@/components/marketing/WhatsAppFab";
+import { ContactFabs } from "@/components/marketing/ContactFabs";
 import { AppointmentDialog } from "@/components/appointments/AppointmentDialog";
 import { Button } from "@/components/ui/button";
 import { useDocumentMeta } from "@/hooks/use-document-meta";
@@ -21,7 +21,7 @@ export default function Services() {
 
   return (
     <PageLayout>
-      <WhatsAppFab />
+      <ContactFabs />
 
       <header className="bg-hero">
         <div className="container py-14 sm:py-18">

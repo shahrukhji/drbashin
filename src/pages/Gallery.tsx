@@ -2,7 +2,7 @@ import * as React from "react";
 import { Image as ImageIcon, Sparkles } from "lucide-react";
 
 import { PageLayout } from "@/components/layout/PageLayout";
-import { WhatsAppFab } from "@/components/marketing/WhatsAppFab";
+import { ContactFabs } from "@/components/marketing/ContactFabs";
 import { GalleryLightbox, type GalleryItem } from "@/components/marketing/GalleryLightbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useDocumentMeta } from "@/hooks/use-document-meta";
@@ -105,7 +105,7 @@ export default function Gallery() {
 
   return (
     <PageLayout>
-      <WhatsAppFab />
+      <ContactFabs />
 
       <header className="bg-hero relative overflow-hidden">
         <div aria-hidden className="pointer-events-none absolute inset-0">
