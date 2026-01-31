@@ -1,23 +1,31 @@
 import * as React from "react";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHeading } from "@/components/marketing/SectionHeading";
 import { ContactFabs } from "@/components/marketing/ContactFabs";
-import { AppointmentDialog } from "@/components/appointments/AppointmentDialog";
 import { Button } from "@/components/ui/button";
 import { useDocumentMeta } from "@/hooks/use-document-meta";
-import { clinic, serviceCategories } from "@/content/clinic";
+import { clinic } from "@/content/clinic";
+import { servicesPageGroups } from "@/content/services-page";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export default function Services() {
-  const [open, setOpen] = React.useState(false);
-  const [service, setService] = React.useState<string | undefined>(undefined);
-
   useDocumentMeta({
     title: `Services | ${clinic.name}`,
     description:
-      "Explore preventive, cosmetic, restorative and advanced dental services at Bhasin Dental Clinic in Pitampura, Delhi."
+      "Explore dental treatments and diagnostic support at Bhasin Dental Clinic in Pitampura, Delhi."
   });
+
+  const waLink = React.useCallback(
+    (serviceTitle: string) => {
+      const text = encodeURIComponent(
+        `Hi, I’d like to know more about ${serviceTitle} at ${clinic.name}. Please share the next steps.`,
+      );
+      return `https://wa.me/${clinic.whatsapp}?text=${text}`;
+    },
+    [],
+  );
 
   return (
     <PageLayout>
@@ -42,45 +50,80 @@ export default function Services() {
           description="Each category includes a guided process, benefits, and a clear next step."
         />
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {serviceCategories.map((s) => (
-            <article key={s.key} className="surface rounded-3xl p-6">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h2 className="font-display text-2xl">{s.title}</h2>
-                  <p className="mt-2 text-sm text-muted-foreground">{s.description}</p>
-                </div>
-                <div className="h-12 w-12 rounded-2xl bg-accent" />
+        <div className="mt-10 space-y-10">
+          {servicesPageGroups.map((group) => (
+            <section key={group.key} className="surface rounded-3xl p-6 sm:p-8">
+              <div className="flex flex-col gap-2">
+                <h2 className="font-display text-2xl">{group.title}</h2>
+                <p className="text-sm text-muted-foreground">{group.description}</p>
               </div>
 
-              <ul className="mt-5 grid gap-2 text-sm">
-                {s.bullets.map((b) => (
-                  <li key={b} className="flex gap-2 text-muted-foreground">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 text-primary" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="mt-6">
+                <Accordion type="single" collapsible className="w-full">
+                  {group.services.map((s) => (
+                    <AccordionItem key={s.key} value={s.key}>
+                      <AccordionTrigger className="text-left">{s.title}</AccordionTrigger>
+                      <AccordionContent>
+                        <div className="space-y-6">
+                          <p className="text-sm text-muted-foreground">{s.summary}</p>
 
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <Button
-                  variant="hero"
-                  onClick={() => {
-                    setService(s.title);
-                    setOpen(true);
-                  }}
-                >
-                  Book This Service
-                  <ArrowRight />
-                </Button>
-                <div className="text-xs text-muted-foreground">Comfort-first planning • Clear next steps</div>
+                          <div className="grid gap-6 lg:grid-cols-2">
+                            <div>
+                              <div className="text-sm font-medium">Guided process</div>
+                              <ol className="mt-3 space-y-2 text-sm text-muted-foreground">
+                                {s.process.map((step) => (
+                                  <li key={step} className="flex gap-2">
+                                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden />
+                                    <span>{step}</span>
+                                  </li>
+                                ))}
+                              </ol>
+                            </div>
+
+                            <div>
+                              <div className="text-sm font-medium">Benefits</div>
+                              <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                                {s.benefits.map((b) => (
+                                  <li key={b} className="flex gap-2">
+                                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" aria-hidden />
+                                    <span>{b}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+
+                          <div>
+                            <div className="text-sm font-medium">FAQs</div>
+                            <div className="mt-3 grid gap-3">
+                              {s.faqs.map((f) => (
+                                <div key={f.q} className="rounded-2xl border bg-background/60 p-4">
+                                  <div className="text-sm font-medium">{f.q}</div>
+                                  <p className="mt-1 text-sm text-muted-foreground">{f.a}</p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                            <Button variant="hero" asChild>
+                              <a href={waLink(s.title)} target="_blank" rel="noopener noreferrer">
+                                WhatsApp for next steps
+                                <ArrowRight />
+                              </a>
+                            </Button>
+                            <div className="text-xs text-muted-foreground">Comfort-first planning • Clear next steps</div>
+                          </div>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
               </div>
-            </article>
+            </section>
           ))}
         </div>
       </section>
-
-      <AppointmentDialog open={open} onOpenChange={setOpen} initialService={service} />
     </PageLayout>
   );
 }
