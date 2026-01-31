@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { clinic } from "@/content/clinic";
 import { AppointmentDialog } from "@/components/appointments/AppointmentDialog";
 import { cn } from "@/lib/utils";
-import logoImg from "@/assets/bhasin-logo.jpeg";
+import logoImg from "@/assets/bhasin-logo-new.jpeg";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -92,7 +92,7 @@ export function SiteHeader() {
                 <img
                   src={logoImg}
                   alt="Bhasin Dental Clinic logo"
-                  className="h-full w-full rounded-xl object-cover"
+                  className="h-full w-full rounded-xl object-contain bg-background p-1"
                   loading="eager"
                   decoding="async"
                 />
