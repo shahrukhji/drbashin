@@ -10,9 +10,13 @@ import { clinic } from "@/content/clinic";
 
 import facility from "@/assets/clinic-facility.jpg";
 import technology from "@/assets/clinic-technology.jpg";
-import team from "@/assets/dr-damini-portrait.jpg";
-
-const placeholder = "/placeholder.svg";
+import doctorPortrait from "@/assets/dr-damini-portrait-original.jpeg";
+import teamPhoto from "@/assets/gallery-team-1.jpeg";
+import patientPhoto1 from "@/assets/gallery-patient-1.jpeg";
+import patientPhoto2 from "@/assets/gallery-patient-2.jpeg";
+import patientPhoto3 from "@/assets/gallery-patient-3.jpeg";
+import treatmentPhoto from "@/assets/gallery-treatment-1.jpeg";
+import eventPhoto from "@/assets/gallery-event-1.jpeg";
 
 type CategoryKey = "facility" | "technology" | "team";
 
@@ -26,19 +30,19 @@ const categories: Record<CategoryKey, { label: string; items: readonly GalleryIt
         caption: "Reception & waiting area",
       },
       {
-        src: placeholder,
-        alt: "Clinic corridor and interiors",
-        caption: "Clinic interiors (add photo)",
+        src: patientPhoto2,
+        alt: "Dental clinic chair and operatory area",
+        caption: "Operatory & chair",
       },
       {
-        src: placeholder,
-        alt: "Treatment room",
-        caption: "Treatment room (add photo)",
+        src: treatmentPhoto,
+        alt: "Dental treatment in progress in the clinic operatory",
+        caption: "Treatment in progress",
       },
       {
-        src: placeholder,
-        alt: "Sterilization area",
-        caption: "Sterilization zone (add photo)",
+        src: patientPhoto1,
+        alt: "Dental clinic room setup for patient care",
+        caption: "Clinic setup",
       },
     ],
   },
@@ -51,19 +55,19 @@ const categories: Record<CategoryKey, { label: string; items: readonly GalleryIt
         caption: "Modern diagnostics",
       },
       {
-        src: placeholder,
-        alt: "Comfort-focused dental chair setup",
-        caption: "Comfort-focused operatory (add photo)",
+        src: patientPhoto2,
+        alt: "Comfort-focused dental chair and equipment",
+        caption: "Comfort-focused operatory",
       },
       {
-        src: placeholder,
-        alt: "Intra-oral scan workflow",
-        caption: "Digital planning (add photo)",
+        src: treatmentPhoto,
+        alt: "Clinical workflow in the operatory",
+        caption: "Clinical workflow",
       },
       {
-        src: placeholder,
-        alt: "Sterilization equipment",
-        caption: "Safety & sterilization (add photo)",
+        src: facility,
+        alt: "Clean clinic reception and waiting area",
+        caption: "Clean, calm environment",
       },
     ],
   },
@@ -71,24 +75,24 @@ const categories: Record<CategoryKey, { label: string; items: readonly GalleryIt
     label: "Team",
     items: [
       {
-        src: team,
+        src: doctorPortrait,
         alt: "Professional portrait of Dr. Damini Bhasin",
         caption: "Dr. Damini Bhasin",
       },
       {
-        src: placeholder,
-        alt: "Clinic team assisting patients",
-        caption: "Front desk team (add photo)",
+        src: teamPhoto,
+        alt: "Clinic team members at the clinic",
+        caption: "Clinic team",
       },
       {
-        src: placeholder,
-        alt: "Clinic staff preparing a treatment room",
-        caption: "Clinical assistants (add photo)",
+        src: patientPhoto3,
+        alt: "Doctor with a patient at the clinic",
+        caption: "Patient care",
       },
       {
-        src: placeholder,
-        alt: "Team group photo",
-        caption: "Team group photo (add photo)",
+        src: eventPhoto,
+        alt: "Doctor attending an event",
+        caption: "Community & events",
       },
     ],
   },
