@@ -1,9 +1,5 @@
 import * as React from "react";
-import { ArrowRight, MapPin, Phone, ShieldCheck, Sparkles, Timer } from "lucide-react";
-import { NavLink } from "@/components/NavLink";
-
-import heroImg from "@/assets/bhasin-hero.jpg";
-import portrait from "@/assets/dr-damini-portrait.jpg";
+import { MapPin, Phone } from "lucide-react";
 
 import { PageLayout } from "@/components/layout/PageLayout";
 import { SectionHeading } from "@/components/marketing/SectionHeading";
@@ -12,23 +8,15 @@ import { GoogleReviewsPlaceholder } from "@/components/marketing/GoogleReviewsPl
 import { AppointmentDialog } from "@/components/appointments/AppointmentDialog";
 import { Button } from "@/components/ui/button";
 import { useDocumentMeta } from "@/hooks/use-document-meta";
-import { clinic, serviceCategories, whyChooseUs } from "@/content/clinic";
-import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/motion/Reveal";
-import { SlotCounter } from "@/components/motion/SlotCounter";
-
-const TrustBadges = () => (
-  <div className="mt-10 grid gap-3 sm:grid-cols-3">
-    {["7+ Years of Excellence", "Advanced Technology", "Pain‑Free Treatments"].map((t) => (
-      <div key={t} className="rounded-2xl border bg-background/70 px-4 py-3 text-sm soft-shadow">
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-primary" />
-          <span className="font-medium">{t}</span>
-        </div>
-      </div>
-    ))}
-  </div>
-);
+import { clinic } from "@/content/clinic";
+import { HomeHero } from "@/components/home/HomeHero";
+import { HomeOutcomes } from "@/components/home/HomeOutcomes";
+import { HomeAbout } from "@/components/home/HomeAbout";
+import { HomeWhyChooseUs } from "@/components/home/HomeWhyChooseUs";
+import { HomeServices } from "@/components/home/HomeServices";
+import { HomeFeatures } from "@/components/home/HomeFeatures";
+import { HomeFaqs } from "@/components/home/HomeFaqs";
 
 export default function Index() {
   const [open, setOpen] = React.useState(false);
@@ -43,219 +31,16 @@ export default function Index() {
     <PageLayout>
       <ContactFabs />
 
-      <section className="bg-hero">
-        <div className="container grid items-center gap-10 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
-          <Reveal>
-            <div>
-              <h1 className="text-balance font-display text-4xl tracking-tight sm:text-5xl">
-                Welcome to {clinic.name}
-              </h1>
-              <p className="mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
-                Your trusted partner for advanced dental care since {clinic.established}. Experience calm, comfort-first treatment with modern technology.
-              </p>
+      <HomeHero onBook={() => setOpen(true)} />
+      <HomeOutcomes />
+      <HomeAbout />
+      <HomeWhyChooseUs />
+      <HomeServices />
+      <HomeFeatures />
+      <HomeFaqs />
 
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Button variant="hero" size="lg" onClick={() => setOpen(true)}>
-                  Book Appointment
-                  <ArrowRight />
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <NavLink to="/about">Learn More</NavLink>
-                </Button>
-              </div>
 
-              <TrustBadges />
-            </div>
-          </Reveal>
-
-          <Reveal delay={120}>
-            <div className="relative">
-              <div className="overflow-hidden rounded-3xl border bg-background soft-shadow">
-                <img
-                  src={heroImg}
-                  alt="Modern dental clinic interior"
-                  className="h-[340px] w-full object-cover sm:h-[420px]"
-                  loading="eager"
-                />
-              </div>
-              <div className="pointer-events-none absolute -bottom-5 -left-4 hidden h-28 w-28 rounded-3xl bg-accent/60 blur-2xl sm:block" />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="container py-10">
-        <Reveal>
-          <div className="surface relative overflow-hidden rounded-3xl p-6 sm:p-8">
-            <div aria-hidden className="pointer-events-none absolute inset-0">
-              <div className="absolute -left-14 -top-16 h-56 w-56 rounded-full bg-primary/15 blur-3xl" />
-              <div className="absolute -right-20 top-10 h-72 w-72 rounded-full bg-accent/60 blur-3xl" />
-            </div>
-
-            <div className="relative">
-              <div className="text-sm font-medium text-muted-foreground">Successfully Completed</div>
-              <h2 className="mt-2 text-balance font-display text-2xl tracking-tight sm:text-3xl">
-                Proven outcomes, premium care
-              </h2>
-
-              <div className="mt-6 grid gap-4 md:grid-cols-3">
-                {["10000+ Dental Implants", "5000+ Invisible Aligners", "7000+ Digital Smile designs"].map((label, i) => {
-                  const [count, ...rest] = label.split(" ");
-                  const end = Number(count.replace(/\D/g, ""));
-                  const start = Math.max(0, end - 1000);
-                  const step = end >= 10000 ? 100 : 50;
-                  return (
-                    <Reveal key={label} delay={120 + i * 90}>
-                      <div className="rounded-2xl border bg-background/70 p-5 soft-shadow">
-                        <div className="font-display text-3xl">
-                          <SlotCounter start={start} end={end} step={step} durationMs={1400} suffix="+" />
-                        </div>
-                        <div className="mt-1 text-sm text-muted-foreground">{rest.join(" ")}</div>
-                      </div>
-                    </Reveal>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </section>
-
-      <section className="container py-14">
-        <Reveal>
-          <div className="grid items-center gap-10 lg:grid-cols-2">
-          <div className="overflow-hidden rounded-3xl border bg-background soft-shadow">
-            <img
-              src={portrait}
-              alt="Dr. Damini Bhasin portrait"
-              className="h-[360px] w-full object-cover"
-              loading="lazy"
-            />
-          </div>
-          <div>
-            <SectionHeading
-              eyebrow="About"
-              title="Led by Dr. Damini Bhasin"
-              description="A premium dental experience focused on empathy, precision, and comfort—every step of the way."
-            />
-            <p className="mt-5 text-sm text-muted-foreground">
-              From routine cleanings to advanced treatments, we prioritize gentle care, clear communication, and results you can feel confident about.
-            </p>
-            <div className="mt-7">
-              <Button variant="outline" asChild>
-                <NavLink to="/about">Read More</NavLink>
-              </Button>
-            </div>
-          </div>
-          </div>
-        </Reveal>
-      </section>
-
-      <section className="container py-14">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Experience"
-            title="What to expect on your first visit"
-            description="A calm, guided process designed to reduce anxiety and deliver clarity—before any treatment begins."
-          />
-        </Reveal>
-
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          <Reveal delay={80}>
-            <div className="surface rounded-3xl p-6">
-            <div className="flex items-center gap-3">
-              <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent">
-                <ShieldCheck className="h-5 w-5" />
-              </div>
-              <div className="font-medium">Comfort-first assessment</div>
-            </div>
-            <p className="mt-3 text-sm text-muted-foreground">
-              We start with a gentle examination and clear explanation—no rushing, no pressure.
-            </p>
-            </div>
-          </Reveal>
-          <Reveal delay={170}>
-            <div className="surface rounded-3xl p-6">
-            <div className="flex items-center gap-3">
-              <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent">
-                <Sparkles className="h-5 w-5" />
-              </div>
-              <div className="font-medium">Personalized treatment plan</div>
-            </div>
-            <p className="mt-3 text-sm text-muted-foreground">
-              Options, timelines, and costs are discussed upfront—so you can decide confidently.
-            </p>
-            </div>
-          </Reveal>
-          <Reveal delay={260}>
-            <div className="surface rounded-3xl p-6">
-            <div className="flex items-center gap-3">
-              <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-accent">
-                <Timer className="h-5 w-5" />
-              </div>
-              <div className="font-medium">Efficient appointments</div>
-            </div>
-            <p className="mt-3 text-sm text-muted-foreground">
-              Modern diagnostics help us reduce chair-time while keeping results precise.
-            </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="container py-14">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Services"
-            title="Care for every smile"
-            description="Explore our core service categories—designed around comfort, longevity, and confidence."
-          />
-        </Reveal>
-
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {serviceCategories.map((s) => (
-            <Reveal key={s.key} delay={80}>
-              <div
-                className={cn(
-                  "rounded-3xl border bg-background p-6 transition-transform duration-300 hover:-translate-y-1 soft-shadow",
-                )}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <div className="font-display text-lg">{s.title}</div>
-                  <div className="h-10 w-10 rounded-2xl bg-accent" />
-                </div>
-                <p className="mt-3 text-sm text-muted-foreground">{s.description}</p>
-                <div className="mt-5">
-                  <Button variant="soft" size="sm" asChild>
-                    <NavLink to="/services">View Details</NavLink>
-                  </Button>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <section className="container py-14">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Why choose us"
-            title="A calmer dental experience"
-            description="Advanced technology meets personalized care—built for trust and comfort."
-          />
-        </Reveal>
-
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {whyChooseUs.map((f) => (
-            <Reveal key={f.title} delay={80}>
-              <div className="surface rounded-3xl p-6">
-                <div className="text-sm font-medium">{f.title}</div>
-                <p className="mt-2 text-sm text-muted-foreground">{f.description}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      {/* Keep existing review + location + CTA sections below */}
 
       <section className="container py-14">
         <Reveal>
