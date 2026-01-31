@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import portrait from "@/assets/dr-damini-portrait.jpg";
+import portrait from "@/assets/dr-damini-portrait-original.jpeg";
 import { Reveal } from "@/components/motion/Reveal";
 import { SectionHeading } from "@/components/marketing/SectionHeading";
 import { Button } from "@/components/ui/button";
