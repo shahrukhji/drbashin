@@ -6,9 +6,9 @@ import { ContactFabs } from "@/components/marketing/ContactFabs";
 import { useDocumentMeta } from "@/hooks/use-document-meta";
 import { clinic } from "@/content/clinic";
 
-import portrait from "@/assets/dr-damini-portrait.jpg";
-import facility from "@/assets/clinic-facility.jpg";
-import technology from "@/assets/clinic-technology.jpg";
+import portrait from "@/assets/dr-damini-portrait-original.jpeg";
+import facility from "@/assets/gallery-patient-1.jpeg";
+import technology from "@/assets/gallery-treatment-1.jpeg";
 
 import { GalleryLightbox } from "@/components/marketing/GalleryLightbox";
 

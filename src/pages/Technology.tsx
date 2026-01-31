@@ -6,8 +6,8 @@ import { ContactFabs } from "@/components/marketing/ContactFabs";
 import { useDocumentMeta } from "@/hooks/use-document-meta";
 import { clinic } from "@/content/clinic";
 
-import tech from "@/assets/clinic-technology.jpg";
-import facility from "@/assets/clinic-facility.jpg";
+import tech from "@/assets/gallery-treatment-1.jpeg";
+import facility from "@/assets/gallery-patient-2.jpeg";
 
 import { GalleryLightbox } from "@/components/marketing/GalleryLightbox";
 
