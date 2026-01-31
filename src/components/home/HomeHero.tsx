@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ArrowRight, Sparkles } from "lucide-react";
 
-import heroImg from "@/assets/bhasin-hero.jpg";
+import heroImg from "@/assets/dr-damini-portrait-original.jpeg";
 import { clinic } from "@/content/clinic";
 import { Reveal } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/button";
@@ -57,7 +57,7 @@ export function HomeHero({ onBook }: { onBook: () => void }) {
             <div className="overflow-hidden rounded-3xl border bg-background soft-shadow">
               <img
                 src={heroImg}
-                alt="Modern dental clinic interior"
+                alt="Portrait of Dr. Damini Bhasin"
                 className="h-[340px] w-full object-cover sm:h-[420px]"
                 loading="eager"
               />

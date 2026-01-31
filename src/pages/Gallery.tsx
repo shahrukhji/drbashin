@@ -8,8 +8,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useDocumentMeta } from "@/hooks/use-document-meta";
 import { clinic } from "@/content/clinic";
 
-import facility from "@/assets/clinic-facility.jpg";
-import technology from "@/assets/clinic-technology.jpg";
 import doctorPortrait from "@/assets/dr-damini-portrait-original.jpeg";
 import teamPhoto from "@/assets/gallery-team-1.jpeg";
 import patientPhoto1 from "@/assets/gallery-patient-1.jpeg";
@@ -25,9 +23,9 @@ const categories: Record<CategoryKey, { label: string; items: readonly GalleryIt
     label: "Facility",
     items: [
       {
-        src: facility,
-        alt: "Clinic reception and patient waiting area",
-        caption: "Reception & waiting area",
+        src: patientPhoto1,
+        alt: "Patient care area inside the clinic",
+        caption: "Clinic care area",
       },
       {
         src: patientPhoto2,
@@ -40,9 +38,9 @@ const categories: Record<CategoryKey, { label: string; items: readonly GalleryIt
         caption: "Treatment in progress",
       },
       {
-        src: patientPhoto1,
-        alt: "Dental clinic room setup for patient care",
-        caption: "Clinic setup",
+        src: patientPhoto3,
+        alt: "Doctor with a patient at the clinic",
+        caption: "Patient comfort",
       },
     ],
   },
@@ -50,9 +48,9 @@ const categories: Record<CategoryKey, { label: string; items: readonly GalleryIt
     label: "Technology",
     items: [
       {
-        src: technology,
-        alt: "Advanced dental technology equipment used at the clinic",
-        caption: "Modern diagnostics",
+        src: treatmentPhoto,
+        alt: "Dental treatment equipment and workflow in use",
+        caption: "Clinical workflow",
       },
       {
         src: patientPhoto2,
@@ -60,14 +58,14 @@ const categories: Record<CategoryKey, { label: string; items: readonly GalleryIt
         caption: "Comfort-focused operatory",
       },
       {
-        src: treatmentPhoto,
-        alt: "Clinical workflow in the operatory",
-        caption: "Clinical workflow",
+        src: patientPhoto1,
+        alt: "Clinic setup showing instruments and chair",
+        caption: "Equipment setup",
       },
       {
-        src: facility,
-        alt: "Clean clinic reception and waiting area",
-        caption: "Clean, calm environment",
+        src: patientPhoto3,
+        alt: "Doctor and patient inside the clinic",
+        caption: "Comfort-first care",
       },
     ],
   },
